@@ -38,7 +38,7 @@ export default function Candidatos() {
       setCandidatos(data || []);
     } catch (error) {
       console.error("Erro ao buscar candidatos:", error);
-      toast.error("❌ Erro ao carregar candidatos. Tente novamente.");
+      toast.error("Erro ao carregar candidatos. Tente novamente.");
     } finally {
       setIsLoading(false);
     }
@@ -64,7 +64,7 @@ export default function Candidatos() {
       fetchCandidatos();
     } catch (error) {
       console.error("Erro ao criar candidato:", error);
-      toast.error("❌ Erro ao cadastrar candidato. Tente novamente.");
+      toast.error("Erro ao cadastrar candidato. Tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
@@ -94,7 +94,7 @@ export default function Candidatos() {
       fetchCandidatos();
     } catch (error) {
       console.error("Erro ao atualizar candidato:", error);
-      toast.error("❌ Erro ao atualizar candidato. Tente novamente.");
+      toast.error("Erro ao atualizar candidato. Tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
