@@ -14,7 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      candidatos: {
+        Row: {
+          area_interesse: string
+          created_at: string
+          data_cadastro: string
+          email: string
+          id: string
+          nome_completo: string
+          telefone: string
+          updated_at: string
+        }
+        Insert: {
+          area_interesse: string
+          created_at?: string
+          data_cadastro: string
+          email: string
+          id?: string
+          nome_completo: string
+          telefone: string
+          updated_at?: string
+        }
+        Update: {
+          area_interesse?: string
+          created_at?: string
+          data_cadastro?: string
+          email?: string
+          id?: string
+          nome_completo?: string
+          telefone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
