@@ -35,7 +35,7 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
 
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Calendar className="h-4 w-4 flex-shrink-0" />
-              <span>Data: {candidato.data_cadastro}</span>
+              <span>Data de Cadastro: {candidato.data_cadastro}</span>
             </div>
           </div>
         </div>
