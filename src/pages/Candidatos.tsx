@@ -15,11 +15,11 @@ export default function Candidatos() {
   const [candidatos, setCandidatos] = useState<Candidato[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedArea, setSelectedArea] = useState("todas");
   const [selectedPeriod, setSelectedPeriod] = useState("todas");
-  
+
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editingCandidato, setEditingCandidato] = useState<Candidato | null>(null);
@@ -32,10 +32,7 @@ export default function Candidatos() {
   const fetchCandidatos = async () => {
     try {
       setIsLoading(true);
-      const { data, error } = await supabase
-        .from("candidatos")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const { data, error } = await supabase.from("candidatos").select("*").order("created_at", { ascending: false });
 
       if (error) throw error;
       setCandidatos(data || []);
@@ -50,17 +47,19 @@ export default function Candidatos() {
   const handleCreateCandidato = async (data: CandidatoFormData) => {
     try {
       setIsSubmitting(true);
-      const { error } = await supabase.from("candidatos").insert([{
-        nome_completo: data.nome_completo,
-        email: data.email,
-        telefone: data.telefone,
-        area_interesse: data.area_interesse,
-        data_cadastro: data.data_cadastro,
-      }]);
+      const { error } = await supabase.from("candidatos").insert([
+        {
+          nome_completo: data.nome_completo,
+          email: data.email,
+          telefone: data.telefone,
+          area_interesse: data.area_interesse,
+          data_cadastro: data.data_cadastro,
+        },
+      ]);
 
       if (error) throw error;
 
-      toast.success("✅ Candidato cadastrado com sucesso!");
+      toast.success("Candidato cadastrado com sucesso!");
       setModalOpen(false);
       fetchCandidatos();
     } catch (error) {
@@ -106,10 +105,7 @@ export default function Candidatos() {
 
     try {
       setIsSubmitting(true);
-      const { error } = await supabase
-        .from("candidatos")
-        .delete()
-        .eq("id", deletingCandidato.id);
+      const { error } = await supabase.from("candidatos").delete().eq("id", deletingCandidato.id);
 
       if (error) throw error;
 
@@ -130,9 +126,7 @@ export default function Candidatos() {
 
     // Filtro de busca por nome
     if (searchTerm.trim()) {
-      filtered = filtered.filter((c) =>
-        c.nome_completo.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      filtered = filtered.filter((c) => c.nome_completo.toLowerCase().includes(searchTerm.toLowerCase()));
     }
 
     // Filtro por área
@@ -147,9 +141,7 @@ export default function Candidatos() {
         const dataCadastro = parseDataString(c.data_cadastro);
         if (!dataCadastro) return false;
 
-        const diffDays = Math.floor(
-          (now.getTime() - dataCadastro.getTime()) / (1000 * 60 * 60 * 24)
-        );
+        const diffDays = Math.floor((now.getTime() - dataCadastro.getTime()) / (1000 * 60 * 60 * 24));
 
         switch (selectedPeriod) {
           case "hoje":
@@ -159,15 +151,11 @@ export default function Candidatos() {
           case "ultimos30":
             return diffDays <= 30;
           case "estemes":
-            return (
-              dataCadastro.getMonth() === now.getMonth() &&
-              dataCadastro.getFullYear() === now.getFullYear()
-            );
+            return dataCadastro.getMonth() === now.getMonth() && dataCadastro.getFullYear() === now.getFullYear();
           case "mespassado":
             const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1);
             return (
-              dataCadastro.getMonth() === lastMonth.getMonth() &&
-              dataCadastro.getFullYear() === lastMonth.getFullYear()
+              dataCadastro.getMonth() === lastMonth.getMonth() && dataCadastro.getFullYear() === lastMonth.getFullYear()
             );
           default:
             return true;
@@ -204,9 +192,7 @@ export default function Candidatos() {
       ) : filteredCandidatos.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <Users className="h-16 w-16 text-muted-foreground mb-4" />
-          <h3 className="text-lg font-semibold text-foreground mb-2">
-            Nenhum candidato cadastrado
-          </h3>
+          <h3 className="text-lg font-semibold text-foreground mb-2">Nenhum candidato cadastrado</h3>
           <p className="text-sm text-muted-foreground">
             {searchTerm || selectedArea !== "todas" || selectedPeriod !== "todas"
               ? "Nenhum candidato encontrado com os filtros selecionados."
