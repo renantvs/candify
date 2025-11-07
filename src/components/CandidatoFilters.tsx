@@ -60,7 +60,7 @@ export function CandidatoFilters({
           </div>
         </SelectTrigger>
         <SelectContent className="bg-popover z-50">
-          <SelectItem value="todas">Data</SelectItem>
+          <SelectItem value="todas">Data de Cadastro</SelectItem>
           <SelectItem value="hoje">Hoje</SelectItem>
           <SelectItem value="ultimos7">Últimos 7 dias</SelectItem>
           <SelectItem value="ultimos30">Últimos 30 dias</SelectItem>
