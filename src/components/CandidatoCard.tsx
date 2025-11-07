@@ -30,7 +30,7 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Briefcase className="h-4 w-4 flex-shrink-0" />
-              <span>Categoria: {candidato.area_interesse}</span>
+              <span>Área de Interesse: {candidato.area_interesse}</span>
             </div>
 
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
