@@ -18,32 +18,28 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
     .toUpperCase();
 
   return (
-    <div className="group relative rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
+    <div className="w-full group relative rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
       <div className="flex items-start gap-4">
         <Avatar className="h-12 w-12 flex-shrink-0 bg-muted">
-          <AvatarFallback className="bg-muted text-muted-foreground font-medium">
-            {initials}
-          </AvatarFallback>
+          <AvatarFallback className="bg-muted text-muted-foreground font-medium">{initials}</AvatarFallback>
         </Avatar>
-        
+
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-base text-foreground mb-3">
-            {candidato.nome_completo}
-          </h3>
-          
+          <h3 className="font-semibold text-base text-foreground mb-3">{candidato.nome_completo}</h3>
+
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Briefcase className="h-4 w-4 flex-shrink-0" />
               <span>Categoria: {candidato.area_interesse}</span>
             </div>
-            
+
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Calendar className="h-4 w-4 flex-shrink-0" />
               <span>Data: {candidato.data_cadastro}</span>
             </div>
           </div>
         </div>
-        
+
         <div className="flex gap-2">
           <Button
             variant="ghost"
@@ -54,7 +50,7 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
           >
             <Pencil className="h-4 w-4" />
           </Button>
-          
+
           <Button
             variant="ghost"
             size="icon"
