@@ -1,13 +1,7 @@
 import { Search, Filter, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { areasInteresse } from "@/types/candidato";
 
 interface CandidatoFiltersProps {
@@ -49,7 +43,7 @@ export function CandidatoFilters({
           </div>
         </SelectTrigger>
         <SelectContent className="bg-popover z-50">
-          <SelectItem value="todas">Todas</SelectItem>
+          <SelectItem value="todas">Área de Interesse</SelectItem>
           {areasInteresse.map((area) => (
             <SelectItem key={area} value={area}>
               {area}
@@ -66,7 +60,7 @@ export function CandidatoFilters({
           </div>
         </SelectTrigger>
         <SelectContent className="bg-popover z-50">
-          <SelectItem value="todas">Todas</SelectItem>
+          <SelectItem value="todas">Data</SelectItem>
           <SelectItem value="hoje">Hoje</SelectItem>
           <SelectItem value="ultimos7">Últimos 7 dias</SelectItem>
           <SelectItem value="ultimos30">Últimos 30 dias</SelectItem>
