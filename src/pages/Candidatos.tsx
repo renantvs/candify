@@ -184,7 +184,7 @@ export default function Candidatos() {
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="space-y-4">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <Skeleton key={i} className="h-[140px] rounded-xl" />
           ))}
@@ -200,7 +200,7 @@ export default function Candidatos() {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="space-y-4">
           {filteredCandidatos.map((candidato) => (
             <CandidatoCard
               key={candidato.id}
