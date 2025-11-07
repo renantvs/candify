@@ -24,9 +24,9 @@ export function AppSidebar() {
     <Sidebar className="w-[280px] border-r border-sidebar-border bg-sidebar">
       <div className="flex items-center gap-2 px-6 py-6">
         <Leaf className="h-6 w-6 text-primary" />
-        <span className="text-xl font-semibold text-foreground">rpfinance</span>
+        <span className="text-xl font-semibold text-foreground">Candify</span>
       </div>
-      
+
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="px-6 text-xs font-medium uppercase tracking-wider text-muted-foreground">
@@ -57,9 +57,7 @@ export function AppSidebar() {
       <SidebarFooter className="border-t border-sidebar-border p-4">
         <div className="flex items-center gap-3 px-2">
           <Avatar className="h-10 w-10 bg-primary">
-            <AvatarFallback className="bg-primary text-primary-foreground font-medium">
-              BF
-            </AvatarFallback>
+            <AvatarFallback className="bg-primary text-primary-foreground font-medium">BF</AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-foreground truncate">Bianca Ferreira</p>
