@@ -27,14 +27,14 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
         </Avatar>
         
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-base text-foreground truncate mb-3">
+          <h3 className="font-semibold text-base text-foreground mb-3">
             {candidato.nome_completo}
           </h3>
           
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Briefcase className="h-4 w-4 flex-shrink-0" />
-              <span className="truncate">Categoria: {candidato.area_interesse}</span>
+              <span>Categoria: {candidato.area_interesse}</span>
             </div>
             
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
