@@ -88,7 +88,7 @@ export default function Candidatos() {
 
       if (error) throw error;
 
-      toast.success("✅ Candidato atualizado com sucesso!");
+      toast.success("Candidato atualizado com sucesso!");
       setModalOpen(false);
       setEditingCandidato(null);
       fetchCandidatos();
@@ -109,7 +109,7 @@ export default function Candidatos() {
 
       if (error) throw error;
 
-      toast.success("✅ Candidato excluído com sucesso!");
+      toast.success("Candidato excluído com sucesso!");
       setDeleteModalOpen(false);
       setDeletingCandidato(null);
       fetchCandidatos();
