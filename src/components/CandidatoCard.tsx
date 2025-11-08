@@ -18,16 +18,18 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
     .toUpperCase();
 
   return (
-    <div className="group relative rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
-      <div className="flex items-start gap-4">
+    <div className="w-full group relative rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
+      {/* Container principal com foto, nome e botões */}
+      <div className="flex items-start gap-4 mb-3 sm:mb-0">
         <Avatar className="h-12 w-12 flex-shrink-0 bg-muted">
           <AvatarFallback className="bg-muted text-muted-foreground font-medium">{initials}</AvatarFallback>
         </Avatar>
 
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-base text-foreground mb-3">{candidato.nome_completo}</h3>
+          <h3 className="font-semibold text-base text-foreground sm:mb-3">{candidato.nome_completo}</h3>
 
-          <div className="space-y-2">
+          {/* Dados visíveis apenas no DESKTOP */}
+          <div className="hidden sm:block space-y-2">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Briefcase className="h-4 w-4 flex-shrink-0" />
               <span>Área de Interesse: {candidato.area_interesse}</span>
@@ -60,6 +62,25 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
           >
             <Trash2 className="h-4 w-4" />
           </Button>
+        </div>
+      </div>
+
+      {/* Dados visíveis apenas no MOBILE - alinhados à esquerda */}
+      <div className="sm:hidden space-y-3">
+        <div className="text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 mb-1">
+            <Briefcase className="h-4 w-4 flex-shrink-0" />
+            <span className="font-medium">Área de Interesse:</span>
+          </div>
+          <span className="block">{candidato.area_interesse}</span>
+        </div>
+
+        <div className="text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 mb-1">
+            <Calendar className="h-4 w-4 flex-shrink-0" />
+            <span className="font-medium">Data de Cadastro:</span>
+          </div>
+          <span className="block">{candidato.data_cadastro}</span>
         </div>
       </div>
     </div>
