@@ -13,23 +13,19 @@ export function AppHeader() {
           </Button>
         </SidebarTrigger>
       </div>
-      
+
       <div className="flex-1" />
-      
+
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon" aria-label="Alternar tema">
           <Sun className="h-5 w-5 text-muted-foreground" />
         </Button>
-        
+
         <div className="flex items-center gap-3">
           <Avatar className="h-9 w-9 bg-primary">
-            <AvatarFallback className="bg-primary text-primary-foreground text-sm font-medium">
-              BF
-            </AvatarFallback>
+            <AvatarFallback className="bg-primary text-primary-foreground text-sm font-medium">LR</AvatarFallback>
           </Avatar>
-          <span className="hidden text-sm font-medium text-foreground sm:inline-block">
-            Olá, Bianca
-          </span>
+          <span className="hidden text-sm font-medium text-foreground sm:inline-block">Olá, Luciana Regis</span>
         </div>
       </div>
     </header>

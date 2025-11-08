@@ -57,10 +57,10 @@ export function AppSidebar() {
       <SidebarFooter className="border-t border-sidebar-border p-4">
         <div className="flex items-center gap-3 px-2">
           <Avatar className="h-10 w-10 bg-primary">
-            <AvatarFallback className="bg-primary text-primary-foreground font-medium">BF</AvatarFallback>
+            <AvatarFallback className="bg-primary text-primary-foreground font-medium">L</AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-foreground truncate">Bianca Ferreira</p>
+            <p className="text-sm font-medium text-foreground truncate">Luciana</p>
           </div>
           <Button
             variant="ghost"
