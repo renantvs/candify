@@ -67,7 +67,7 @@ export function CandidatoFilters({
       <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
         <SelectTrigger className="h-11 bg-card border-border focus:ring-primary">
           <div className="flex items-center gap-2">
-            <Filter className="h-4 w-4 text-muted-foreground" />
+            <CalendarIcon className="h-4 w-4 text-muted-foreground" />
             <SelectValue placeholder="Data de Cadastro" />
           </div>
         </SelectTrigger>
