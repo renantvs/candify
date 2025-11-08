@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { X, AlertCircle } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -80,26 +80,14 @@ export function CandidatoModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto bg-card animate-fade-in">
         <DialogHeader>
-          <div className="flex items-start justify-between">
-            <div>
-              <DialogTitle className="text-xl font-semibold text-foreground">
-                {candidato ? "Editar Candidato" : "Novo Candidato"}
-              </DialogTitle>
-              <p className="text-sm text-muted-foreground mt-1">
-                {candidato
-                  ? "Atualize as informações do candidato."
-                  : "Adicione um novo candidato ao sistema."}
-              </p>
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="h-8 w-8 -mr-2 -mt-2"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
+          <DialogTitle className="text-xl font-semibold text-foreground">
+            {candidato ? "Editar Candidato" : "Novo Candidato"}
+          </DialogTitle>
+          <p className="text-sm text-muted-foreground mt-1">
+            {candidato
+              ? "Atualize as informações do candidato."
+              : "Adicione um novo candidato ao sistema."}
+          </p>
         </DialogHeader>
 
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-5 mt-4">
