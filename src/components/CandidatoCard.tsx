@@ -20,7 +20,7 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
   return (
     <div className="w-full group relative rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
       {/* Container principal com foto, nome e botões */}
-      <div className="flex items-start gap-4 mb-3 sm:mb-0">
+      <div className="flex items-center sm:items-start gap-4 mb-3 sm:mb-0">
         <Avatar className="h-12 w-12 flex-shrink-0 bg-muted">
           <AvatarFallback className="bg-muted text-muted-foreground font-medium">{initials}</AvatarFallback>
         </Avatar>
