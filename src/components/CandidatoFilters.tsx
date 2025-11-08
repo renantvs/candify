@@ -83,14 +83,14 @@ export function CandidatoFilters({
 
       <Button
         onClick={onNovoCandidato}
-        className="h-11 bg-primary hover:bg-primary-hover text-primary-foreground font-medium shadow-sm transition-all hover:shadow-md"
+        className="order-4 lg:order-4 h-11 bg-primary hover:bg-primary-hover text-primary-foreground font-medium shadow-sm transition-all hover:shadow-md"
       >
         <Plus className="h-4 w-4 mr-2" />
         Cadastrar Candidato
       </Button>
 
       {selectedPeriod === "personalizado" && (
-        <div className="col-span-1 md:col-span-2 lg:col-span-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="order-3 lg:order-5 col-span-1 md:col-span-2 lg:col-span-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground">Data Inicial</label>
             <Popover>
@@ -99,7 +99,7 @@ export function CandidatoFilters({
                   variant="outline"
                   className={cn(
                     "w-full h-11 justify-start text-left font-normal bg-card border-border",
-                    !customStartDate && "text-muted-foreground"
+                    !customStartDate && "text-muted-foreground",
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
@@ -126,7 +126,7 @@ export function CandidatoFilters({
                   variant="outline"
                   className={cn(
                     "w-full h-11 justify-start text-left font-normal bg-card border-border",
-                    !customEndDate && "text-muted-foreground"
+                    !customEndDate && "text-muted-foreground",
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
