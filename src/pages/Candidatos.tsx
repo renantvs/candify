@@ -19,6 +19,8 @@ export default function Candidatos() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedArea, setSelectedArea] = useState("todas");
   const [selectedPeriod, setSelectedPeriod] = useState("todas");
+  const [customStartDate, setCustomStartDate] = useState<Date | undefined>();
+  const [customEndDate, setCustomEndDate] = useState<Date | undefined>();
 
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -152,11 +154,9 @@ export default function Candidatos() {
             return diffDays <= 30;
           case "estemes":
             return dataCadastro.getMonth() === now.getMonth() && dataCadastro.getFullYear() === now.getFullYear();
-          case "mespassado":
-            const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1);
-            return (
-              dataCadastro.getMonth() === lastMonth.getMonth() && dataCadastro.getFullYear() === lastMonth.getFullYear()
-            );
+          case "personalizado":
+            if (!customStartDate || !customEndDate) return true;
+            return dataCadastro >= customStartDate && dataCadastro <= customEndDate;
           default:
             return true;
         }
@@ -164,7 +164,7 @@ export default function Candidatos() {
     }
 
     return filtered;
-  }, [candidatos, searchTerm, selectedArea, selectedPeriod]);
+  }, [candidatos, searchTerm, selectedArea, selectedPeriod, customStartDate, customEndDate]);
 
   return (
     <div className="p-6 lg:p-8">
@@ -176,6 +176,10 @@ export default function Candidatos() {
           setSelectedArea={setSelectedArea}
           selectedPeriod={selectedPeriod}
           setSelectedPeriod={setSelectedPeriod}
+          customStartDate={customStartDate}
+          setCustomStartDate={setCustomStartDate}
+          customEndDate={customEndDate}
+          setCustomEndDate={setCustomEndDate}
           onNovoCandidato={() => {
             setEditingCandidato(null);
             setModalOpen(true);

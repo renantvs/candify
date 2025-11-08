@@ -1,8 +1,12 @@
-import { Search, Filter, Plus } from "lucide-react";
+import { Search, Filter, Plus, Calendar as CalendarIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { areasInteresse } from "@/types/candidato";
+import { formatData } from "@/lib/format";
+import { cn } from "@/lib/utils";
 
 interface CandidatoFiltersProps {
   searchTerm: string;
@@ -11,6 +15,10 @@ interface CandidatoFiltersProps {
   setSelectedArea: (value: string) => void;
   selectedPeriod: string;
   setSelectedPeriod: (value: string) => void;
+  customStartDate: Date | undefined;
+  setCustomStartDate: (date: Date | undefined) => void;
+  customEndDate: Date | undefined;
+  setCustomEndDate: (date: Date | undefined) => void;
   onNovoCandidato: () => void;
 }
 
@@ -21,6 +29,10 @@ export function CandidatoFilters({
   setSelectedArea,
   selectedPeriod,
   setSelectedPeriod,
+  customStartDate,
+  setCustomStartDate,
+  customEndDate,
+  setCustomEndDate,
   onNovoCandidato,
 }: CandidatoFiltersProps) {
   return (
@@ -65,7 +77,7 @@ export function CandidatoFilters({
           <SelectItem value="ultimos7">Últimos 7 dias</SelectItem>
           <SelectItem value="ultimos30">Últimos 30 dias</SelectItem>
           <SelectItem value="estemes">Este mês</SelectItem>
-          <SelectItem value="mespassado">Mês passado</SelectItem>
+          <SelectItem value="personalizado">Personalizado</SelectItem>
         </SelectContent>
       </Select>
 
@@ -76,6 +88,64 @@ export function CandidatoFilters({
         <Plus className="h-4 w-4 mr-2" />
         Cadastrar Candidato
       </Button>
+
+      {selectedPeriod === "personalizado" && (
+        <div className="col-span-1 md:col-span-2 lg:col-span-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground">Data Inicial</label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "w-full h-11 justify-start text-left font-normal bg-card border-border",
+                    !customStartDate && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {customStartDate ? formatData(customStartDate) : "Selecione a data"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={customStartDate}
+                  onSelect={setCustomStartDate}
+                  initialFocus
+                  className="pointer-events-auto"
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground">Data Final</label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "w-full h-11 justify-start text-left font-normal bg-card border-border",
+                    !customEndDate && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {customEndDate ? formatData(customEndDate) : "Selecione a data"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={customEndDate}
+                  onSelect={setCustomEndDate}
+                  initialFocus
+                  className="pointer-events-auto"
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
