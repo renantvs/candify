@@ -18,13 +18,13 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
     .toUpperCase();
 
   return (
-    <div className="w-full group relative rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
-      <div className="flex flex-col sm:flex-row items-start gap-4">
+    <div className="group relative rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
+      <div className="flex items-start gap-4">
         <Avatar className="h-12 w-12 flex-shrink-0 bg-muted">
           <AvatarFallback className="bg-muted text-muted-foreground font-medium">{initials}</AvatarFallback>
         </Avatar>
 
-        <div className="flex-1 min-w-0 w-full">
+        <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-base text-foreground mb-3">{candidato.nome_completo}</h3>
 
           <div className="space-y-2">
@@ -40,7 +40,7 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
           </div>
         </div>
 
-        <div className="flex gap-2 sm:flex-col sm:gap-2">
+        <div className="flex gap-2">
           <Button
             variant="ghost"
             size="icon"
