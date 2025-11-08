@@ -43,7 +43,7 @@ export function CandidatoFilters({
           placeholder="Nome do Candidato"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="h-11 pl-10 bg-card border-border focus-visible:ring-primary"
+          className="h-11 pl-10 text-sm bg-card border-border focus-visible:ring-primary"
         />
       </div>
 
