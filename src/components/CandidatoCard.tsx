@@ -66,21 +66,21 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
       </div>
 
       {/* Dados visíveis apenas no MOBILE - alinhados à esquerda */}
-      <div className="sm:hidden space-y-2">
-        <div className="flex flex-col gap-1 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2">
+      <div className="sm:hidden space-y-3">
+        <div className="text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 mb-1">
             <Briefcase className="h-4 w-4 flex-shrink-0" />
-            <span>Área de Interesse:</span>
+            <span className="font-medium">Área de Interesse:</span>
           </div>
-          <span className="pl-6">{candidato.area_interesse}</span>
+          <span className="block">{candidato.area_interesse}</span>
         </div>
 
-        <div className="flex flex-col gap-1 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2">
+        <div className="text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 mb-1">
             <Calendar className="h-4 w-4 flex-shrink-0" />
-            <span>Data de Cadastro:</span>
+            <span className="font-medium">Data de Cadastro:</span>
           </div>
-          <span className="pl-6">{candidato.data_cadastro}</span>
+          <span className="block">{candidato.data_cadastro}</span>
         </div>
       </div>
     </div>
