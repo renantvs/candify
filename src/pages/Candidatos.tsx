@@ -117,7 +117,7 @@ export default function Candidatos() {
       fetchCandidatos();
     } catch (error) {
       console.error("Erro ao excluir candidato:", error);
-      toast.error("❌ Erro ao excluir candidato. Tente novamente.");
+      toast.error("Erro ao excluir candidato. Tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
