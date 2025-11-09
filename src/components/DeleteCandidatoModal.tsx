@@ -1,11 +1,5 @@
 import { AlertTriangle } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Candidato } from "@/types/candidato";
 
@@ -17,13 +11,7 @@ interface DeleteCandidatoModalProps {
   isLoading?: boolean;
 }
 
-export function DeleteCandidatoModal({
-  open,
-  onClose,
-  onConfirm,
-  candidato,
-  isLoading,
-}: DeleteCandidatoModalProps) {
+export function DeleteCandidatoModal({ open, onClose, onConfirm, candidato, isLoading }: DeleteCandidatoModalProps) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[400px] bg-card animate-fade-in">
@@ -33,23 +21,15 @@ export function DeleteCandidatoModal({
           </div>
 
           <DialogHeader>
-            <DialogTitle className="text-xl font-semibold text-foreground">
-              Confirmar Exclusão
-            </DialogTitle>
+            <DialogTitle className="text-xl font-semibold text-foreground text-center">Confirmar Exclusão</DialogTitle>
             <DialogDescription className="text-sm text-muted-foreground pt-2">
               Tem certeza que deseja excluir o candidato{" "}
-              <strong className="text-foreground">{candidato?.nome_completo}</strong>? 
-              Esta ação não pode ser desfeita.
+              <strong className="text-foreground">{candidato?.nome_completo}</strong>? Esta ação não pode ser desfeita.
             </DialogDescription>
           </DialogHeader>
 
           <div className="flex gap-3 w-full pt-2">
-            <Button
-              variant="outline"
-              onClick={onClose}
-              disabled={isLoading}
-              className="flex-1 border-border"
-            >
+            <Button variant="outline" onClick={onClose} disabled={isLoading} className="flex-1 border-border">
               Cancelar
             </Button>
             <Button
