@@ -2,22 +2,11 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { candidatoSchema, CandidatoFormData } from "@/lib/validators";
 import { areasInteresse } from "@/types/candidato";
 import { formatTelefone, formatData } from "@/lib/format";
@@ -31,13 +20,7 @@ interface CandidatoModalProps {
   isLoading?: boolean;
 }
 
-export function CandidatoModal({
-  open,
-  onClose,
-  onSubmit,
-  candidato,
-  isLoading,
-}: CandidatoModalProps) {
+export function CandidatoModal({ open, onClose, onSubmit, candidato, isLoading }: CandidatoModalProps) {
   const {
     register,
     handleSubmit,
@@ -84,9 +67,7 @@ export function CandidatoModal({
             {candidato ? "Editar Candidato" : "Novo Candidato"}
           </DialogTitle>
           <p className="text-sm text-muted-foreground mt-1">
-            {candidato
-              ? "Atualize as informações do candidato."
-              : "Adicione um novo candidato ao sistema."}
+            {candidato ? "Atualize as informações do candidato." : "Adicione um novo candidato ao sistema."}
           </p>
         </DialogHeader>
 
@@ -152,10 +133,7 @@ export function CandidatoModal({
             <Label htmlFor="area_interesse" className="font-semibold text-foreground">
               Área de Interesse
             </Label>
-            <Select
-              value={watch("area_interesse")}
-              onValueChange={(value) => setValue("area_interesse", value)}
-            >
+            <Select value={watch("area_interesse")} onValueChange={(value) => setValue("area_interesse", value)}>
               <SelectTrigger className="bg-card border-border focus:ring-primary">
                 <SelectValue placeholder="Selecione a Área de interesse" />
               </SelectTrigger>
@@ -184,7 +162,6 @@ export function CandidatoModal({
               placeholder="dd/mm/aaaa"
               {...register("data_cadastro")}
               className="bg-card border-border focus-visible:ring-primary"
-              readOnly
             />
             {errors.data_cadastro && (
               <p className="flex items-center gap-1 text-sm text-destructive">
@@ -204,8 +181,8 @@ export function CandidatoModal({
                 ? "Salvando..."
                 : "Adicionando..."
               : candidato
-              ? "Salvar Alterações"
-              : "Adicionar Candidato"}
+                ? "Salvar Alterações"
+                : "Adicionar Candidato"}
           </Button>
         </form>
       </DialogContent>
