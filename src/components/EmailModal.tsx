@@ -98,7 +98,7 @@ export function EmailModal({ open, onClose, candidato }: EmailModalProps) {
 
           <Button
             onClick={handleEnviar}
-            className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-sm transition-all hover:shadow-md"
+            className="w-full h-12 bg-primary hover:bg-primary-hover text-primary-foreground font-medium shadow-sm transition-all hover:shadow-md"
           >
             <Mail className="h-4 w-4 mr-2" />
             Enviar E-mail
