@@ -7,6 +7,7 @@ import { CandidatoCard } from "@/components/CandidatoCard";
 import { CandidatoFilters } from "@/components/CandidatoFilters";
 import { CandidatoModal } from "@/components/CandidatoModal";
 import { DeleteCandidatoModal } from "@/components/DeleteCandidatoModal";
+import { EmailModal } from "@/components/EmailModal";
 import toast from "react-hot-toast";
 import { parseDataString } from "@/lib/format";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -26,6 +27,8 @@ export default function Candidatos() {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editingCandidato, setEditingCandidato] = useState<Candidato | null>(null);
   const [deletingCandidato, setDeletingCandidato] = useState<Candidato | null>(null);
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
+  const [emailingCandidato, setEmailingCandidato] = useState<Candidato | null>(null);
 
   useEffect(() => {
     fetchCandidatos();
@@ -217,6 +220,10 @@ export default function Candidatos() {
                 setDeletingCandidato(c);
                 setDeleteModalOpen(true);
               }}
+              onEmail={(c) => {
+                setEmailingCandidato(c);
+                setEmailModalOpen(true);
+              }}
             />
           ))}
         </div>
@@ -242,6 +249,15 @@ export default function Candidatos() {
         onConfirm={handleDeleteCandidato}
         candidato={deletingCandidato}
         isLoading={isSubmitting}
+      />
+
+      <EmailModal
+        open={emailModalOpen}
+        onClose={() => {
+          setEmailModalOpen(false);
+          setEmailingCandidato(null);
+        }}
+        candidato={emailingCandidato}
       />
     </div>
   );
