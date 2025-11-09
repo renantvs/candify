@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { areasInteresse } from "@/types/candidato";
 import { formatData } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { ptBR } from "date-fns/locale";
 
 interface CandidatoFiltersProps {
   searchTerm: string;
@@ -112,6 +113,7 @@ export function CandidatoFilters({
                   selected={customStartDate}
                   onSelect={setCustomStartDate}
                   initialFocus
+                  locale={ptBR}
                   className="pointer-events-auto"
                 />
               </PopoverContent>
@@ -139,6 +141,7 @@ export function CandidatoFilters({
                   selected={customEndDate}
                   onSelect={setCustomEndDate}
                   initialFocus
+                  locale={ptBR}
                   className="pointer-events-auto"
                 />
               </PopoverContent>
