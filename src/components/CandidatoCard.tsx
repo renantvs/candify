@@ -1,6 +1,12 @@
-import { Briefcase, Calendar, Pencil, Trash2 } from "lucide-react";
+import { Briefcase, Calendar, Pencil, Trash2, MoreVertical } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Candidato } from "@/types/candidato";
 
 interface CandidatoCardProps {
@@ -42,7 +48,8 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
           </div>
         </div>
 
-        <div className="flex gap-2">
+        {/* Botões visíveis apenas no DESKTOP */}
+        <div className="hidden sm:flex gap-2">
           <Button
             variant="ghost"
             size="icon"
@@ -63,6 +70,28 @@ export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProp
             <Trash2 className="h-4 w-4" />
           </Button>
         </div>
+
+        {/* Menu dropdown com três pontos - visível apenas no MOBILE */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="sm:hidden h-8 w-8" aria-label="Mais opções">
+              <MoreVertical className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-40">
+            <DropdownMenuItem onClick={() => onEdit(candidato)} className="cursor-pointer">
+              <Pencil className="h-4 w-4 mr-2" />
+              Editar
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => onDelete(candidato)}
+              className="cursor-pointer text-destructive focus:text-destructive"
+            >
+              <Trash2 className="h-4 w-4 mr-2" />
+              Excluir
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       {/* Dados visíveis apenas no MOBILE - alinhados à esquerda */}
