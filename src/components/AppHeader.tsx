@@ -6,7 +6,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 export function AppHeader() {
   return (
     <header className="sticky top-0 z-40 flex h-[72px] items-center justify-between border-b border-border bg-card px-6">
-      <div className="flex items-center gap-4 lg:hidden">
+      <div className="flex items-center gap-4">
         <SidebarTrigger>
           <Button variant="ghost" size="icon" aria-label="Abrir menu">
             <Menu className="h-5 w-5" />
