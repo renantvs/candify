@@ -1,4 +1,4 @@
-import { Briefcase, Calendar, Pencil, Trash2, MoreVertical, Mail } from "lucide-react";
+import { Briefcase, Calendar, Pencil, Trash2, MoreVertical, Mail, MessageCircle } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,9 +14,10 @@ interface CandidatoCardProps {
   onEdit: (candidato: Candidato) => void;
   onDelete: (candidato: Candidato) => void;
   onEmail: (candidato: Candidato) => void;
+  onWhatsApp: (candidato: Candidato) => void;
 }
 
-export function CandidatoCard({ candidato, onEdit, onDelete, onEmail }: CandidatoCardProps) {
+export function CandidatoCard({ candidato, onEdit, onDelete, onEmail, onWhatsApp }: CandidatoCardProps) {
   const initials = candidato.nome_completo
     .split(" ")
     .map((n) => n[0])
@@ -51,6 +52,16 @@ export function CandidatoCard({ candidato, onEdit, onDelete, onEmail }: Candidat
 
         {/* Botões visíveis apenas no DESKTOP */}
         <div className="hidden sm:flex gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 text-green-600 hover:bg-green-50 hover:text-green-600"
+            onClick={() => onWhatsApp(candidato)}
+            aria-label="Enviar WhatsApp"
+          >
+            <MessageCircle className="h-4 w-4" />
+          </Button>
+
           <Button
             variant="ghost"
             size="icon"
@@ -90,6 +101,11 @@ export function CandidatoCard({ candidato, onEdit, onDelete, onEmail }: Candidat
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-40">
+            <DropdownMenuItem onClick={() => onWhatsApp(candidato)} className="cursor-pointer">
+              <MessageCircle className="h-4 w-4 mr-2" />
+              Enviar WhatsApp
+            </DropdownMenuItem>
+
             <DropdownMenuItem onClick={() => onEmail(candidato)} className="cursor-pointer">
               <Mail className="h-4 w-4 mr-2" />
               Enviar E-mail

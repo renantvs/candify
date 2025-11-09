@@ -126,6 +126,22 @@ export default function Candidatos() {
     }
   };
 
+  const handleWhatsApp = (candidato: Candidato) => {
+    // Remove caracteres especiais e mantém apenas números
+    const telefone = candidato.telefone.replace(/\D/g, '');
+    
+    // Mensagem padrão
+    const mensagem = `Olá, tudo bem?
+
+Seus dados estão na nossa base do Candify e estamos entrando em contato para saber se você tem disponibilidade para uma entrevista?`;
+    
+    // Criar link do WhatsApp com código do Brasil (55)
+    const whatsappLink = `https://wa.me/55${telefone}?text=${encodeURIComponent(mensagem)}`;
+    
+    // Abrir em nova aba
+    window.open(whatsappLink, '_blank');
+  };
+
   const filteredCandidatos = useMemo(() => {
     let filtered = candidatos;
 
@@ -209,22 +225,23 @@ export default function Candidatos() {
       ) : (
         <div className="space-y-4">
           {filteredCandidatos.map((candidato) => (
-            <CandidatoCard
-              key={candidato.id}
-              candidato={candidato}
-              onEdit={(c) => {
-                setEditingCandidato(c);
-                setModalOpen(true);
-              }}
-              onDelete={(c) => {
-                setDeletingCandidato(c);
-                setDeleteModalOpen(true);
-              }}
-              onEmail={(c) => {
-                setEmailingCandidato(c);
-                setEmailModalOpen(true);
-              }}
-            />
+                  <CandidatoCard
+                    key={candidato.id}
+                    candidato={candidato}
+                    onEdit={(c) => {
+                      setEditingCandidato(c);
+                      setModalOpen(true);
+                    }}
+                    onDelete={(c) => {
+                      setDeletingCandidato(c);
+                      setDeleteModalOpen(true);
+                    }}
+                    onEmail={(c) => {
+                      setEmailingCandidato(c);
+                      setEmailModalOpen(true);
+                    }}
+                    onWhatsApp={handleWhatsApp}
+                  />
           ))}
         </div>
       )}
