@@ -1,4 +1,4 @@
-import { Briefcase, Calendar, Pencil, Trash2, MoreVertical, Mail } from "lucide-react";
+import { Briefcase, Calendar, Pencil, Trash2, MoreVertical } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,10 +13,9 @@ interface CandidatoCardProps {
   candidato: Candidato;
   onEdit: (candidato: Candidato) => void;
   onDelete: (candidato: Candidato) => void;
-  onEmail: (candidato: Candidato) => void;
 }
 
-export function CandidatoCard({ candidato, onEdit, onDelete, onEmail }: CandidatoCardProps) {
+export function CandidatoCard({ candidato, onEdit, onDelete }: CandidatoCardProps) {
   const initials = candidato.nome_completo
     .split(" ")
     .map((n) => n[0])
@@ -54,16 +53,6 @@ export function CandidatoCard({ candidato, onEdit, onDelete, onEmail }: Candidat
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 text-blue-600 hover:bg-blue-50 hover:text-blue-600"
-            onClick={() => onEmail(candidato)}
-            aria-label="Enviar e-mail"
-          >
-            <Mail className="h-4 w-4" />
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
             className="h-8 w-8 text-primary hover:bg-primary-light hover:text-primary"
             onClick={() => onEdit(candidato)}
             aria-label="Editar candidato"
@@ -90,10 +79,6 @@ export function CandidatoCard({ candidato, onEdit, onDelete, onEmail }: Candidat
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-40">
-            <DropdownMenuItem onClick={() => onEmail(candidato)} className="cursor-pointer">
-              <Mail className="h-4 w-4 mr-2" />
-              Enviar E-mail
-            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onEdit(candidato)} className="cursor-pointer">
               <Pencil className="h-4 w-4 mr-2" />
               Editar
