@@ -54,7 +54,7 @@ export function CandidatoCard({ candidato, onEdit, onDelete, onEmail }: Candidat
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 text-blue-600 hover:bg-blue-50 hover:text-blue-600"
+            className="h-8 w-8 text-primary hover:bg-primary-light hover:text-primary"
             onClick={() => onEmail(candidato)}
             aria-label="Enviar e-mail"
           >
@@ -90,14 +90,11 @@ export function CandidatoCard({ candidato, onEdit, onDelete, onEmail }: Candidat
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-40">
-            <DropdownMenuItem
-              onClick={() => onEmail(candidato)}
-              className="cursor-pointer"
-            >
+            <DropdownMenuItem onClick={() => onEmail(candidato)} className="cursor-pointer">
               <Mail className="h-4 w-4 mr-2" />
               Enviar E-mail
             </DropdownMenuItem>
-            
+
             <DropdownMenuItem onClick={() => onEdit(candidato)} className="cursor-pointer">
               <Pencil className="h-4 w-4 mr-2" />
               Editar
