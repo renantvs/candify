@@ -21,7 +21,7 @@ const menuItems = [
 
 export function AppSidebar() {
   return (
-    <Sidebar className="w-[280px] border-r border-sidebar-border bg-sidebar">
+    <Sidebar collapsible="icon" className="w-[280px] border-r border-sidebar-border bg-sidebar">
       <div className="flex items-center gap-2 px-6 py-6">
         <Leaf className="h-6 w-6 text-primary" />
         <span className="text-xl font-semibold text-foreground">Candify</span>
