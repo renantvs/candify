@@ -34,7 +34,7 @@ export function EmailModal({ open, onClose, candidato }: EmailModalProps) {
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-card">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-foreground flex items-center justify-center gap-2">
+          <DialogTitle className="text-xl font-semibold text-foreground flex items-center gap-2">
             <Mail className="h-5 w-5 text-primary" />
             Enviar E-mail
           </DialogTitle>
