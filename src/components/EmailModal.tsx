@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { Mail } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -28,7 +23,7 @@ export function EmailModal({ open, onClose, candidato }: EmailModalProps) {
 
     const mailtoLink = `mailto:${candidato.email}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(mensagem)}`;
     window.location.href = mailtoLink;
-    
+
     setDe("");
     setAssunto("");
     setMensagem("");
@@ -40,12 +35,10 @@ export function EmailModal({ open, onClose, candidato }: EmailModalProps) {
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto bg-card">
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold text-foreground flex items-center gap-2">
-            <Mail className="h-5 w-5 text-blue-600" />
+            <Mail className="h-5 w-5 text-primary" />
             Enviar E-mail
           </DialogTitle>
-          <p className="text-sm text-muted-foreground mt-1">
-            Envie um e-mail para {candidato?.nome_completo}
-          </p>
+          <p className="text-sm text-muted-foreground mt-1">Envie um e-mail para {candidato?.nome_completo}</p>
         </DialogHeader>
 
         <div className="space-y-4 mt-4">
