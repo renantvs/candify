@@ -1,5 +1,7 @@
 import { Users, User, LogOut, Leaf } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -20,6 +22,22 @@ const menuItems = [
 ];
 
 export function AppSidebar() {
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const userName = user?.user_metadata?.nome_completo || "";
+  const userEmail = user?.email || "";
+  const displayName = userName || userEmail.split('@')[0] || "Usuário";
+  
+  const initials = userName 
+    ? userName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
+    : userEmail.split("@")[0].substring(0, 2).toUpperCase();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/auth");
+  };
+
   return (
     <Sidebar collapsible="icon" className="w-[280px] border-r border-sidebar-border bg-sidebar">
       <div className="flex items-center gap-2 px-6 py-6">
@@ -57,14 +75,17 @@ export function AppSidebar() {
       <SidebarFooter className="border-t border-sidebar-border p-4">
         <div className="flex items-center gap-3 px-2">
           <Avatar className="h-10 w-10 bg-primary">
-            <AvatarFallback className="bg-primary text-primary-foreground font-medium">L</AvatarFallback>
+            <AvatarFallback className="bg-primary text-primary-foreground font-medium">
+              {initials}
+            </AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-foreground truncate">Luciana</p>
+            <p className="text-sm font-medium text-foreground truncate">{displayName}</p>
           </div>
           <Button
             variant="ghost"
             size="icon"
+            onClick={handleSignOut}
             className="h-8 w-8 text-muted-foreground hover:text-foreground"
             aria-label="Sair"
           >

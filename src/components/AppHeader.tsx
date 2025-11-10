@@ -14,11 +14,12 @@ export function AppHeader() {
     navigate("/auth");
   };
 
+  const userName = user?.user_metadata?.nome_completo || "";
   const userEmail = user?.email || "";
-  const initials = userEmail
-    .split("@")[0]
-    .substring(0, 2)
-    .toUpperCase();
+  
+  const initials = userName 
+    ? userName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
+    : userEmail.split("@")[0].substring(0, 2).toUpperCase();
 
   return (
     <header className="sticky top-0 z-40 flex h-[72px] items-center justify-between border-b border-border bg-card px-6">
@@ -44,7 +45,7 @@ export function AppHeader() {
             </AvatarFallback>
           </Avatar>
           <span className="hidden text-sm font-medium text-foreground sm:inline-block">
-            {userEmail}
+            {userName || userEmail}
           </span>
         </div>
 

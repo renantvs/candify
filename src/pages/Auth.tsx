@@ -10,12 +10,19 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { z } from "zod";
 
 const authSchema = z.object({
+  nome_completo: z.string().min(3, "Nome deve ter no mínimo 3 caracteres").max(100, "Nome deve ter no máximo 100 caracteres").trim(),
+  email: z.string().email("E-mail inválido"),
+  password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
+});
+
+const loginSchema = z.object({
   email: z.string().email("E-mail inválido"),
   password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
 });
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
+  const [nomeCompleto, setNomeCompleto] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,7 +43,10 @@ export default function Auth() {
     setError(null);
 
     // Validate input
-    const validation = authSchema.safeParse({ email, password });
+    const validation = isLogin 
+      ? loginSchema.safeParse({ email, password })
+      : authSchema.safeParse({ nome_completo: nomeCompleto, email, password });
+    
     if (!validation.success) {
       setError(validation.error.errors[0].message);
       return;
@@ -67,6 +77,9 @@ export default function Auth() {
           password,
           options: {
             emailRedirectTo: redirectUrl,
+            data: {
+              nome_completo: nomeCompleto.trim(),
+            },
           },
         });
 
@@ -110,6 +123,20 @@ export default function Auth() {
               </Alert>
             )}
 
+            {!isLogin && (
+              <div className="space-y-2">
+                <Label htmlFor="nome">Nome</Label>
+                <Input
+                  id="nome"
+                  type="text"
+                  placeholder="Seu nome completo"
+                  value={nomeCompleto}
+                  onChange={(e) => setNomeCompleto(e.target.value)}
+                  required
+                />
+              </div>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="email">E-mail</Label>
               <Input
@@ -144,6 +171,7 @@ export default function Auth() {
                 onClick={() => {
                   setIsLogin(!isLogin);
                   setError(null);
+                  setNomeCompleto("");
                 }}
                 className="text-primary hover:underline"
               >
