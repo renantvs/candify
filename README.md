@@ -5,6 +5,7 @@
 Este repositório apresenta uma solução completa desenvolvida para o desafio técnico de desenvolvedor.  
 Embora o escopo solicitasse apenas um cadastro simples, o projeto foi estruturado com foco em **escalabilidade, arquitetura limpa, UX, componentização e boas práticas de engenharia** — alinhado a padrões utilizados em aplicações modernas de produção.
 
+  
 ## 🎯 Objetivo do Desafio
 
 **Requisito original:**  
@@ -21,6 +22,7 @@ Criar uma aplicação para cadastro de candidatos contendo os campos:
 - Inserir, visualizar e editar dados
 - Limpar ou excluir registros
 
+
 ## 🚀 Escopo Entregue
 
 O projeto foi desenvolvido com uma visão de produto real, incluindo:
@@ -33,6 +35,7 @@ O projeto foi desenvolvido com uma visão de produto real, incluindo:
 ✅ Design System com shadcn-ui  
 ✅ Gestão de estados bem estruturada  
 ✅ Preparado para futuras integrações com API e Banco de Dados
+
 
 ## 🧱 Arquitetura da Aplicação
 
@@ -49,14 +52,15 @@ src/
 
 ### Pilares arquiteturais aplicados
 
-| Pilar                      | Como foi aplicado                                                        |
-| -------------------------- | ------------------------------------------------------------------------ |
-| **Componentização**        | UI modular, com desacoplamento entre layout, regra e dados               |
-| **Type Safety**            | Tipagem completa com TypeScript para prevenir erros em build e runtime   |
-| **Single Source of Truth** | Context + hooks para centralizar estado e lógica                         |
-| **Design System**          | Uso de shadcn-ui como base de componente + Tailwind                      |
-| **Clean Code**             | Código autoexplicativo, funções puras e baixo acoplamento                |
-| **Escalabilidade**         | Estrutura permite adição de módulos e features sem retrabalho estrutural |
+Pilar - Como foi aplicado
+
+**Componentização** - UI modular, com desacoplamento entre layout, regra e dados.
+**Type Safety** - imagem completa com TypeScript para prevenir erros em build e runtime.
+**Single Source of Truth** - Context + hooks para centralizar estado e lógica.
+**Design System** - Uso de shadcn-ui como base de componente + Tailwind.
+**Clean Code** - Código autoexplicativo, funções puras e baixo acoplamento.
+**Escalabilidade** - Estrutura permite adição de módulos e features sem retrabalho estrutural.
+
 
 ## 🧩 Decisões Técnicas (com Racional e Trade-offs)
 
@@ -68,7 +72,8 @@ src/
 | - **Context** + **Hooks** | Mantém regras de negócio isoladas e reutilizáveis            | Para apps maiores, pode evoluir para Zustand/Jotai/Redux Toolkit. |
 | - Arquitetura modular     | Facilita manutenção, testes e novas features                 | Estrutura mais robusta que o mínimo necessário ao desafio.        |
 
-> **Resumo:** As escolhas priorizaram: qualidade, escalabilidade e boas práticas, mesmo para um projeto pequeno.
+**Resumo:** As escolhas priorizaram: qualidade, escalabilidade e boas práticas, mesmo para um projeto pequeno.
+
 
 ## 🔥 Funcionalidades
 
@@ -94,6 +99,7 @@ A estrutura suporta facilmente extensões, como:
 - Etiquetas e pipelines de recrutamento
 - Persistência em banco real relacional ou NoSQL
 - Painel analítico (BI de RH)
+  
 
 ## 🧬 Possível Evolução de Arquitetura (se escalado para produto real)
 
@@ -114,6 +120,7 @@ Se o produto evoluísse, a projeção arquitetural seria:
 - Pipeline estilo Kanban para recrutadores
 - Webhooks + integrações com ATS e LinkedIn
 
+  
 ## 🧑‍💻 Tecnologias Utilizadas
 
 - React + TypeScript | Base da aplicação e tipagem |
@@ -122,6 +129,7 @@ Se o produto evoluísse, a projeção arquitetural seria:
 - shadcn-ui | Componentes acessíveis e escaláveis |
 - Supabase (opcional)\* | Autenticação + DB + hospedagem de dados |
 
+  
 ## 📦 Como Executar Localmente
 
 bash
@@ -145,12 +153,14 @@ npm run dev
 Acesse:
 http://localhost:3000
 
+  
 🌐 Deploy
 A aplicação está disponível em produção em:
 🔗 https://app.candify.online
 
 Deploy realizado com Lovable para garantir entrega rápida, CI integrado e HTTPS automático.
 
+  
 🏁 Considerações Finais
 Este projeto demonstra não apenas o atendimento ao escopo solicitado, mas maturidade de engenharia, documentação, visão de produto e capacidade de projetar soluções escaláveis.
 
@@ -161,6 +171,7 @@ Ele foi construído com foco em:
 ✅ Pensamento de produto
 ✅ Prontidão para escala
 
+  
 📩 Contato
 Caso queira discutir a arquitetura, decisões, melhorias ou contribuições:
 
