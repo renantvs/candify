@@ -27,10 +27,15 @@ export function AppSidebar() {
 
   const userName = user?.user_metadata?.nome_completo || "";
   const userEmail = user?.email || "";
-  const displayName = userName || userEmail.split('@')[0] || "Usuário";
-  
-  const initials = userName 
-    ? userName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
+  const displayName = userName || userEmail.split("@")[0] || "Usuário";
+
+  const initials = userName
+    ? userName
+        .split(" ")
+        .map((n) => n[0])
+        .join("")
+        .substring(0, 2)
+        .toUpperCase()
     : userEmail.split("@")[0].substring(0, 2).toUpperCase();
 
   const handleSignOut = async () => {
@@ -73,13 +78,11 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="border-t border-sidebar-border p-4">
-        <div className="flex items-center gap-3 px-2">
-          <Avatar className="h-10 w-10 bg-primary">
-            <AvatarFallback className="bg-primary text-primary-foreground font-medium">
-              {initials}
-            </AvatarFallback>
+        <div className="flex items-center gap-3 px-2 group-data-[collapsible=icon]:flex-col group-data-[collapsible=icon]:gap-2 group-data-[collapsible=icon]:px-0">
+          <Avatar className="h-10 w-10 bg-primary group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8">
+            <AvatarFallback className="bg-primary text-primary-foreground font-medium">{initials}</AvatarFallback>
           </Avatar>
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 group-data-[collapsible=icon]:hidden">
             <p className="text-sm font-medium text-foreground truncate">{displayName}</p>
           </div>
           <Button
