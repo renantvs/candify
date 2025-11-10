@@ -112,7 +112,7 @@ export default function Auth() {
           <CardTitle className="text-2xl font-bold">{isLogin ? "Login" : "Criar Conta"}</CardTitle>
           <CardDescription>
             {isLogin
-              ? "Entre com suas credenciais para acessar o sistema Candify"
+              ? "Acesse o sistema Candify com suas credenciais"
               : "Crie uma conta para começar a gerenciar candidatos"}
           </CardDescription>
         </CardHeader>
