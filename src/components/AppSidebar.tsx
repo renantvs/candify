@@ -12,6 +12,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar, // ✅ Import do hook
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -24,6 +25,9 @@ const menuItems = [
 export function AppSidebar() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+
+  // ✅ Hook para controlar o sidebar mobile
+  const { setOpenMobile } = useSidebar();
 
   const userName = user?.user_metadata?.nome_completo || "";
   const userEmail = user?.email || "";
@@ -41,6 +45,13 @@ export function AppSidebar() {
   const handleSignOut = async () => {
     await signOut();
     navigate("/auth");
+  };
+
+  // ✅ Fecha o menu automaticamente no mobile ao clicar
+  const handleMenuClick = () => {
+    if (window.innerWidth <= 768) {
+      setOpenMobile(false);
+    }
   };
 
   return (
@@ -63,6 +74,7 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end
+                      onClick={handleMenuClick} // ✅ Aqui fecha no mobile
                       className="flex items-center gap-3 px-6 py-3 text-sm font-medium text-sidebar-foreground transition-all hover:bg-muted"
                       activeClassName="bg-primary-light text-primary border-l-4 border-primary"
                     >
