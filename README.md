@@ -94,8 +94,10 @@ Pilar - Como foi aplicado
 
 A estrutura suporta facilmente extensões, como:
 
+- Integração com Formulários, e-mails, planilhas
+- Agentes de IA na plataforma e no WhatsApp
 - Autenticação e RBAC
-- Exportação CSV
+- Exportação CSV (Excel)
 - Etiquetas e pipelines de recrutamento
 - Persistência em banco real relacional ou NoSQL
 - Painel analítico (BI de RH)
