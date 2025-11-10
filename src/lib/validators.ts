@@ -28,4 +28,23 @@ export const candidatoSchema = z.object({
     ),
 });
 
+export const emailFormSchema = z.object({
+  de: z
+    .string()
+    .email("Email inválido")
+    .max(255, "Email deve ter no máximo 255 caracteres")
+    .trim(),
+  assunto: z
+    .string()
+    .min(1, "Assunto obrigatório")
+    .max(200, "Assunto deve ter no máximo 200 caracteres")
+    .trim(),
+  mensagem: z
+    .string()
+    .min(1, "Mensagem obrigatória")
+    .max(2000, "Mensagem deve ter no máximo 2000 caracteres")
+    .trim(),
+});
+
 export type CandidatoFormData = z.infer<typeof candidatoSchema>;
+export type EmailFormData = z.infer<typeof emailFormSchema>;

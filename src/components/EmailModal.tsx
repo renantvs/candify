@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { Mail } from "lucide-react";
+import { useEffect } from "react";
+import { Mail, AlertCircle } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Candidato } from "@/types/candidato";
+import { emailFormSchema, EmailFormData } from "@/lib/validators";
 
 interface EmailModalProps {
   open: boolean;
@@ -14,19 +17,33 @@ interface EmailModalProps {
 }
 
 export function EmailModal({ open, onClose, candidato }: EmailModalProps) {
-  const [de, setDe] = useState("");
-  const [assunto, setAssunto] = useState("");
-  const [mensagem, setMensagem] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+    watch,
+  } = useForm<EmailFormData>({
+    resolver: zodResolver(emailFormSchema),
+    mode: "onChange",
+  });
 
-  const handleEnviar = () => {
+  const assuntoValue = watch("assunto") || "";
+  const mensagemValue = watch("mensagem") || "";
+
+  useEffect(() => {
+    if (open) {
+      reset({ de: "", assunto: "", mensagem: "" });
+    }
+  }, [open, reset]);
+
+  const onSubmit = (data: EmailFormData) => {
     if (!candidato) return;
 
-    const mailtoLink = `mailto:${candidato.email}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(mensagem)}`;
+    const mailtoLink = `mailto:${candidato.email}?subject=${encodeURIComponent(data.assunto)}&body=${encodeURIComponent(data.mensagem)}`;
     window.location.href = mailtoLink;
 
-    setDe("");
-    setAssunto("");
-    setMensagem("");
+    reset();
     onClose();
   };
 
@@ -41,7 +58,7 @@ export function EmailModal({ open, onClose, candidato }: EmailModalProps) {
           <p className="text-sm text-muted-foreground mt-1">Envie um e-mail para {candidato?.nome_completo}</p>
         </DialogHeader>
 
-        <div className="space-y-4 mt-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
           <div className="space-y-2">
             <Label htmlFor="de" className="font-semibold text-foreground">
               De:
@@ -50,10 +67,15 @@ export function EmailModal({ open, onClose, candidato }: EmailModalProps) {
               id="de"
               type="email"
               placeholder="seu-email@exemplo.com"
-              value={de}
-              onChange={(e) => setDe(e.target.value)}
+              {...register("de")}
               className="bg-card border-border focus-visible:ring-primary"
             />
+            {errors.de && (
+              <p className="text-sm text-destructive flex items-center gap-1">
+                <AlertCircle className="h-3 w-3" />
+                {errors.de.message}
+              </p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -71,39 +93,50 @@ export function EmailModal({ open, onClose, candidato }: EmailModalProps) {
 
           <div className="space-y-2">
             <Label htmlFor="assunto" className="font-semibold text-foreground">
-              Assunto:
+              Assunto: <span className="text-xs text-muted-foreground">({assuntoValue.length}/200)</span>
             </Label>
             <Input
               id="assunto"
               placeholder="Digite o assunto do e-mail"
-              value={assunto}
-              onChange={(e) => setAssunto(e.target.value)}
+              {...register("assunto")}
               className="bg-card border-border focus-visible:ring-primary"
             />
+            {errors.assunto && (
+              <p className="text-sm text-destructive flex items-center gap-1">
+                <AlertCircle className="h-3 w-3" />
+                {errors.assunto.message}
+              </p>
+            )}
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="mensagem" className="font-semibold text-foreground">
-              Mensagem:
+              Mensagem: <span className="text-xs text-muted-foreground">({mensagemValue.length}/2000)</span>
             </Label>
             <Textarea
               id="mensagem"
               placeholder="Digite sua mensagem aqui..."
-              value={mensagem}
-              onChange={(e) => setMensagem(e.target.value)}
+              {...register("mensagem")}
               rows={8}
               className="bg-card border-border focus-visible:ring-primary resize-none"
             />
+            {errors.mensagem && (
+              <p className="text-sm text-destructive flex items-center gap-1">
+                <AlertCircle className="h-3 w-3" />
+                {errors.mensagem.message}
+              </p>
+            )}
           </div>
 
           <Button
-            onClick={handleEnviar}
-            className="w-full h-12 bg-primary hover:bg-primary-hover text-primary-foreground font-medium shadow-sm transition-all hover:shadow-md"
+            type="submit"
+            disabled={!isValid}
+            className="w-full h-12 bg-primary hover:bg-primary-hover text-primary-foreground font-medium shadow-sm transition-all hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Mail className="h-4 w-4 mr-2" />
             Enviar E-mail
           </Button>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   );
