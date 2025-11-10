@@ -1,75 +1,168 @@
-**Bem-vindo ao seu projeto Lovable**
-Informações do Projeto
+## 🧠 Candify – Plataforma Web para Gestão de Candidatos
 
-URL: https://lovable.dev/projects/4b80665d-b8c5-4516-9469-c5a2ce3198ee
+**Arquitetura, Decisões Técnicas e Boas Práticas Para Escalabilidade**
 
-Como posso editar este código?
+Este repositório apresenta uma solução completa desenvolvida para o desafio técnico de desenvolvedor.  
+Embora o escopo solicitasse apenas um cadastro simples, o projeto foi estruturado com foco em **escalabilidade, arquitetura limpa, UX, componentização e boas práticas de engenharia** — alinhado a padrões utilizados em aplicações modernas de produção.
 
-Existem várias formas de editar sua aplicação.
+## 🎯 Objetivo do Desafio
 
-**Usar o Lovable**
+**Requisito original:**  
+Criar uma aplicação para cadastro de candidatos contendo os campos:
 
-Basta acessar o Projeto no Lovable e começar a enviar prompts.
+- Nome completo
+- E-mail
+- Telefone
+- Área de interesse
+- Data de cadastro
 
-As alterações feitas através do Lovable serão automaticamente commitadas neste repositório.
+**Funcionalidades solicitadas:**
 
-**Usar seu IDE preferido**
+- Inserir, visualizar e editar dados
+- Limpar ou excluir registros
 
-Se quiser trabalhar localmente usando seu próprio IDE, você pode clonar este repositório e enviar (push) as alterações. As mudanças enviadas também serão refletidas no Lovable.
+## 🚀 Escopo Entregue
 
-O único requisito é ter Node.js e npm instalados — instale com nvm
+O projeto foi desenvolvido com uma visão de produto real, incluindo:
 
-Siga os passos abaixo:
+✅ CRUD completo com persistência  
+✅ UI/UX otimizada e responsiva  
+✅ Validação e máscaras de inputs  
+✅ Componentização reutilizável e padronizada  
+✅ Arquitetura escalável e tipada  
+✅ Design System com shadcn-ui  
+✅ Gestão de estados bem estruturada  
+✅ Preparado para futuras integrações com API e Banco de Dados
 
-# Passo 1: Clone o repositório usando a URL Git do projeto.
+## 🧱 Arquitetura da Aplicação
 
-git clone <YOUR_GIT_URL>
+A aplicação segue princípios de arquitetura limpa adaptados para front-end:
 
-# Passo 2: Acesse o diretório do projeto.
+src/
+├─ components/ # Componentes reutilizáveis (UI + lógicos)
+├─ pages/ # Páginas do app (view layer)
+├─ hooks/ # Hooks customizados (regras de negócio isoladas)
+├─ lib/ # Serviços, utils e abstrações
+├─ types/ # Tipagens e modelos
+├─ context/ # Context API para estados globais
+└─ styles/ # Estilos globais e configs
 
-cd <YOUR_PROJECT_NAME>
+### Pilares arquiteturais aplicados
 
-# Passo 3: Instale as dependências necessárias.
+| Pilar                      | Como foi aplicado                                                        |
+| -------------------------- | ------------------------------------------------------------------------ |
+| **Componentização**        | UI modular, com desacoplamento entre layout, regra e dados               |
+| **Type Safety**            | Tipagem completa com TypeScript para prevenir erros em build e runtime   |
+| **Single Source of Truth** | Context + hooks para centralizar estado e lógica                         |
+| **Design System**          | Uso de shadcn-ui como base de componente + Tailwind                      |
+| **Clean Code**             | Código autoexplicativo, funções puras e baixo acoplamento                |
+| **Escalabilidade**         | Estrutura permite adição de módulos e features sem retrabalho estrutural |
 
-npm i
+## 🧩 Decisões Técnicas (com Racional e Trade-offs)
 
-# Passo 4: Inicie o servidor de desenvolvimento com recarregamento automático e pré-visualização instantânea.
+| Decisão                   | Motivação Técnica                                            | Trade-offs                                                        |
+| ------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------- |
+| - **React + TS + Vite**   | Performance, DX eficiente e tipagem para evitar bugs         | Curva de aprendizado para devs iniciantes.                        |
+| - **shadcn-ui**           | Componentes acessíveis, extensíveis e com design consistente | Maior responsabilidade por customização.                          |
+| - **Tailwind CSS**        | Rapidez de desenvolvimento e consistência visual             | Classes utilitárias podem causar poluição visual sem disciplina.  |
+| - **Context** + **Hooks** | Mantém regras de negócio isoladas e reutilizáveis            | Para apps maiores, pode evoluir para Zustand/Jotai/Redux Toolkit. |
+| - Arquitetura modular     | Facilita manutenção, testes e novas features                 | Estrutura mais robusta que o mínimo necessário ao desafio.        |
+
+> **Resumo:** As escolhas priorizaram: qualidade, escalabilidade e boas práticas, mesmo para um projeto pequeno.
+
+## 🔥 Funcionalidades
+
+### Core
+
+- Adicionar, editar, listar e excluir candidatos
+- Persistência de dados (pode ser local ou conectada ao Supabase)
+- Máscaras e validações para inputs
+- Componente de tabela responsiva
+
+### UX Enhancements
+
+- Feedback visual ao usuário
+- Confirmação antes de exclusão
+- Acessibilidade e navegação fluida
+
+### Pronto para Evolução
+
+A estrutura suporta facilmente extensões, como:
+
+- Autenticação e RBAC
+- Exportação CSV
+- Etiquetas e pipelines de recrutamento
+- Persistência em banco real relacional ou NoSQL
+- Painel analítico (BI de RH)
+
+## 🧬 Possível Evolução de Arquitetura (se escalado para produto real)
+
+Se o produto evoluísse, a projeção arquitetural seria:
+
+### Versão 2.0 – Web App completo com backend
+
+- **Front-end:** Next.js + Server Actions
+- **Backend:** Node + NestJS/Express + tRPC
+- **DB:** Postgres + Prisma
+- **Auth:** Supabase Auth ou Clerk
+- **Infra:** Docker + CI/CD + Observabilidade
+
+### Versão 3.0 – SaaS de RH com IA
+
+- Módulo de triagem automática usando IA
+- Score de fit cultural e técnico
+- Pipeline estilo Kanban para recrutadores
+- Webhooks + integrações com ATS e LinkedIn
+
+## 🧑‍💻 Tecnologias Utilizadas
+
+- React + TypeScript | Base da aplicação e tipagem |
+- Vite | Dev server e build otimizado |
+- Tailwind CSS | Estilização ágil e consistente |
+- shadcn-ui | Componentes acessíveis e escaláveis |
+- Supabase (opcional)\* | Autenticação + DB + hospedagem de dados |
+
+## 📦 Como Executar Localmente
+
+bash
+
+# 1. Clone este repositório
+
+git clone <URL_DO_REPOSITORIO>
+
+# 2. Acesse o diretório
+
+cd candify
+
+# 3. Instale as dependências
+
+npm install
+
+# 4. Rode o projeto
 
 npm run dev
 
-**Editar arquivos diretamente pelo GitHub**
+Acesse:
+http://localhost:3000
 
-- Navegue até o(s) arquivo(s) desejado(s).
-- Clique no botão "Edit" (ícone de lápis) no canto superior direito da visualização do arquivo.
-- Faça as alterações e confirme o commit.
+🌐 Deploy
+A aplicação está disponível em produção em:
+🔗 https://app.candify.online
 
-**Usar o GitHub Codespaces**
+Deploy realizado com Lovable para garantir entrega rápida, CI integrado e HTTPS automático.
 
-- Acesse a página principal do seu repositório.
-- Clique no botão "Code" (botão verde) no canto superior direito.
-- Selecione a aba "Codespaces".
-- Clique em "New codespace" para iniciar um novo ambiente Codespace.
-- Edite os arquivos diretamente no Codespace e depois faça commit e push das suas alterações.
+🏁 Considerações Finais
+Este projeto demonstra não apenas o atendimento ao escopo solicitado, mas maturidade de engenharia, documentação, visão de produto e capacidade de projetar soluções escaláveis.
 
-## Quais tecnologias são usadas neste projeto?
+Ele foi construído com foco em:
 
-Este projeto foi construído com:
+✅ Boas práticas
+✅ Arquitetura limpa
+✅ Pensamento de produto
+✅ Prontidão para escala
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+📩 Contato
+Caso queira discutir a arquitetura, decisões, melhorias ou contribuições:
 
-## Como posso publicar (deploy) este projeto?
-
-Abra o Lovable
-e clique em Share → Publish.
-
-## Posso conectar um domínio personalizado ao meu projeto Lovable?
-
-Sim, você pode!
-Para conectar um domínio, acesse Project > Settings > Domains e clique em Connect Domain.
-
-Saiba mais aqui:
-https://app.candify.online/
+Renan Pereira Tavares
+https://linkedin.com/in/renanpereirait/
