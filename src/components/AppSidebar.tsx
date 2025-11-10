@@ -45,9 +45,9 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon" className="w-[280px] border-r border-sidebar-border bg-sidebar">
-      <div className="flex items-center gap-2 px-6 py-6">
+      <div className="flex items-center gap-2 px-6 py-6 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-2">
         <Leaf className="h-6 w-6 text-primary" />
-        <span className="text-xl font-semibold text-foreground">Candify</span>
+        <span className="text-xl font-semibold text-foreground group-data-[collapsible=icon]:hidden">Candify</span>
       </div>
 
       <SidebarContent>
