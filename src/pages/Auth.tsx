@@ -10,7 +10,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { z } from "zod";
 
 const authSchema = z.object({
-  nome_completo: z.string().min(3, "Nome deve ter no mínimo 3 caracteres").max(100, "Nome deve ter no máximo 100 caracteres").trim(),
+  nome_completo: z
+    .string()
+    .min(3, "Nome deve ter no mínimo 3 caracteres")
+    .max(100, "Nome deve ter no máximo 100 caracteres")
+    .trim(),
   email: z.string().email("E-mail inválido"),
   password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
 });
@@ -43,10 +47,10 @@ export default function Auth() {
     setError(null);
 
     // Validate input
-    const validation = isLogin 
+    const validation = isLogin
       ? loginSchema.safeParse({ email, password })
       : authSchema.safeParse({ nome_completo: nomeCompleto, email, password });
-    
+
     if (!validation.success) {
       setError(validation.error.errors[0].message);
       return;
@@ -105,12 +109,10 @@ export default function Auth() {
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">
-            {isLogin ? "Login" : "Criar Conta"}
-          </CardTitle>
+          <CardTitle className="text-2xl font-bold">{isLogin ? "Login" : "Criar Conta"}</CardTitle>
           <CardDescription>
             {isLogin
-              ? "Entre com suas credenciais para acessar o sistema"
+              ? "Entre com suas credenciais para acessar o sistema Candify"
               : "Crie uma conta para começar a gerenciar candidatos"}
           </CardDescription>
         </CardHeader>
@@ -175,9 +177,7 @@ export default function Auth() {
                 }}
                 className="text-primary hover:underline"
               >
-                {isLogin
-                  ? "Não tem uma conta? Criar conta"
-                  : "Já tem uma conta? Fazer login"}
+                {isLogin ? "Não tem uma conta? Criar conta" : "Já tem uma conta? Fazer login"}
               </button>
             </div>
           </form>
